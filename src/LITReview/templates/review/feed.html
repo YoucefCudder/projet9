@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1>Flux</h1>
+
+<ul>
+ {% for ticket in tickets %}
+  <li><a href="{% url 'ticket_snippet' ticket.id %}">{{ ticket.title }}</a></li>
+ {% endfor %}
+</ul>
+
+{% endblock %}
+

@@ -1,0 +1,24 @@
+{% extends 'user/follow_users_form.html' %}
+
+{% block content %}
+
+{% if ticket.user == request.user %}
+
+<div>
+    <ul>
+        {% for ticket in tickets %}
+        <li><a href="{% url 'ticket_snippet' ticket.id %}">{{ ticket.title }}</a></li>
+        {% endfor %}
+    </ul>
+
+</div>
+
+{% endif %}
+
+{% for follow_user in follow_users %}
+
+{% endfor %}
+
+
+
+{% endblock content %}
