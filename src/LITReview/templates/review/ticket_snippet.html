@@ -1,13 +1,13 @@
 <div class="w-full bg-blue-100 rounded-lg sahdow-lg overflow-hidden flex flex-col md:flex-row">
 </div>
-<div class="w-full bg-blue-100 rounded-lg sahdow-lg overflow-hidden flex flex-col md:flex-row"> {% if ticket.image %}
-    <div class="w-full md:w-2/5 h-100">
+<div> {% if ticket.image %}
+    <div>
         <img alt="La couverture du livre {{ ticket.title }}" src="{{ ticket.image.url }}">
     </div>
     {% endif %}
-    <div class="w-full md:w-3/5 text-left p-6 md:p-4 space-y-2">
-        <h2 class="text-xl text-gray-700 font-bold">{{ ticket.title }}</h2>
-        <p class="text-base text-gray-400 font-normal">
+    <div>
+        <h2>{{ ticket.title }}</h2>
+        <p>
             {% if ticket.user != request.user%}
             proposé par {{ ticket.user.username }}
             {% else %}
@@ -15,9 +15,12 @@
             {% endif %}
             le {{ ticket.time_created }}
         </p>
-        <p class="text-base leading-relaxed text-gray-500 font-normal">{{ ticket.description }}</p>
+        <p>{{ ticket.description }}</p>
 
-        <a href="{% url 'create_review' ticket.id %}">CLiquez ici pour ajouter une critique </a>
+        <a href="{% url 'delete' ticket.id %}">Supprimer </a>
+        <a href="{% url 'update' ticket.id %}">Mettre à jour </a>
+
+
 
     </div>
 </div>

@@ -39,8 +39,9 @@ urlpatterns = [
     path('ticket/create_ticket/', review.views.create_ticket, name='create_ticket'),
     path('ticket/<int:pk>', TicketView.as_view(), name='ticket_snippet'),
     path('ticket/<int:pk>/create_review', review.views.review_response, name='create_review'),
+    path('ticket/<int:pk>/delete',review.views.delete_ticket,name='delete'),
+    path('ticket/<int:pk>/update', review.views.update, name='update'),
     path('review/new/', review.views.review_for_ticket, name='review_new'),
-
     path('feed/', review.views.feed, name='feed'),
     path('follow_users/', review.views.follow_users, name='follow_users'),
     path('profile/', review.views.profile_view, name='profile'),

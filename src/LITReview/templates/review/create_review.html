@@ -5,28 +5,26 @@
     <div class="content-section">
         <form enctype='multipart/form-data' method="POST">
             {% csrf_token %}
-            {{ review_form.as_p }}
 
             <fieldset class="form-group">
                 {% if request.get_full_path == "/review/new/" %}
-                <h3 class="mb-4">Livre / Article</h3>
-                {{ ticket_form.as_p }}
+                <h3>Livre / Article</h3>
 
+                {{ ticket_form.as_p }}
                 {% else %}
-                <h4 class="mb-4">Replying to {{ ticket.user }} :</h4>
-                <article class="media ml-4 mr-4">
-                    <div class="media-body">
-                        <h3 class="mt-0 d-inline">{{ ticket.title }}</h3>
-                        <div class="ticket-description">
+                <article>
+                    <div>
+                        <h3>{{ ticket.title }}</h3>
+                        <div>
                             {% if ticket.image %}
-                            <img alt="{{ ticket.title }}" class="img-thumbnail float-left mb-1 mr-3"
-                                 src="{{ ticket.image.url }}">
+                            <img alt="{{ ticket.title }}" src="{{ ticket.image.url }}">
                             {% endif %}
-                            <p class="article-content text-justify mt-3 mr-3">{{ ticket.description }}</p>
+                            <p>{{ ticket.description }}</p>
                         </div>
                     </div>
                 </article>
                 {% endif %}
+                {{ review_form.as_p }}
                 <input type="submit" value="Envoyer">
             </fieldset>
         </form>

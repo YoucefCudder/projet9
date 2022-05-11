@@ -1,17 +1,22 @@
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, HttpResponseRedirect, get_object_or_404
 from django.utils.datastructures import MultiValueDictKeyError
 from django.views.generic import DetailView
 from .forms import NewTicketForm, FollowUsersForm, NewReviewForm
 from review.models import Ticket, Review
 from . import models
+from django.db import IntegrityError
 
 
 @login_required
 def home(request):
-    return render(request, 'review/home.html')
+    feed = models.Ticket.objects.filter(contributors__in=request.user.followed_user.all())
+    context = {
+        'feed': feed,
+    }
+    return render(request, 'review/home.html', context=context)
 
 
 @login_required
@@ -41,7 +46,8 @@ def review_for_ticket(request):
     review_form = NewReviewForm(request.POST)
     if ticket_form.is_valid() and review_form.is_valid():
         try:
-            image = request.FILES['images']
+            print(request.FILES)
+            image = request.FILES['image']
         except MultiValueDictKeyError:
             image = None
         ticket = Ticket.objects.create(
@@ -51,13 +57,14 @@ def review_for_ticket(request):
             image=image
         )
         ticket.save()
-        Review.objects.create(
+        review = Review.objects.create(
             ticket=ticket,
             user=request.user,
             headline=request.POST['headline'],
             rating=request.POST['rating'],
             body=request.POST['body']
         )
+        review.save()
         return redirect('feed')
 
     context = {
@@ -121,17 +128,53 @@ def feed(request):
 
 @login_required
 def follow_users(request):
-    form = FollowUsersForm(instance=request.user)
-    user = request.user
-    user_pk = request.user.id
     if request.method == 'POST':
-        form = FollowUsersForm(request.POST, instance=request.user)
+        form = FollowUsersForm(request.POST)
         if form.is_valid():
-            form.save()
-            choices = User.objects.all().exclude(pk=user_pk)
-            return redirect('home')
-    return render(request, 'user/follow_users_form.html', context={'form': form})
+            try:
+                followed_user = User.objects.get(username=request.POST['followed_user'])
+                if request.user == followed_user:
+                    messages.error(request, 'vous ne pouvez pas vous abonner à votre compte')
+                else:
+                    try:
+                        models.UserFollows.objects.create(user=request.user, followed_user=followed_user)
+                        messages.success(request, f'You êtes désormais abonné  à {followed_user}!')
+                    except IntegrityError:
+                        messages.error(request, f'Vous êtes déjà abonné à {followed_user}!')
+            except User.DoesNotExist:
+                messages.error(request, f' {form.data["followed_user"]} does not exist.')
+    else:
+        form = FollowUsersForm()
+
+    user_follows = models.UserFollows.objects.filter(user=request.user).order_by('followed_user')
+    followed_by = models.UserFollows.objects.filter(followed_user=request.user).order_by('user')
+    context = {
+        'form': form,
+        'user_follows': user_follows,
+        'followed_by': followed_by,
+        'title': 'Abonnements',
+    }
+    return render(request, 'user/follow_users_form.html', context)
 
 
 def profile_view(request):
     return render(request, 'user/profile.html')
+
+
+@login_required()
+def delete_ticket(request, pk):
+    ticket_to_delete = Ticket.objects.get(pk)
+    ticket_to_delete.delete()
+    return render(request, 'review/feed.html')
+
+
+@login_required()
+def update(request, pk):
+    ticket_to_update = Ticket.objects.get(pk=pk)
+    form = NewTicketForm(instance=ticket_to_update)
+    if request.method == 'POST':
+        form = NewTicketForm(request.POST, request.FILES, instance=ticket_to_update)
+        if form.is_valid():
+            form.save()
+            redirect('review/feed.html')
+    return render(request, 'review/update_ticket.html', {'form': form})

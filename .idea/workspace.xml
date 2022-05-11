@@ -1,7 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="f018afd6-c0ac-46ba-9030-eb98a6530b18" name="Changes" comment="Changes" />
+    <list default="true" id="f018afd6-c0ac-46ba-9030-eb98a6530b18" name="Changes" comment="Changes">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/.idea/.name" beforeDir="false" afterPath="$PROJECT_DIR$/src/.idea/.name" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LITReview/templates/review/create_review.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/LITReview/templates/review/create_review.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LITReview/templates/review/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/LITReview/templates/review/home.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LITReview/templates/review/ticket_snippet.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/LITReview/templates/review/ticket_snippet.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LITReview/templates/user/follow_users_form.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/LITReview/templates/user/follow_users_form.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LITReview/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/LITReview/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/src/db.sqlite3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/review/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/review/forms.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/review/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/review/views.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -115,7 +128,14 @@
       <option name="project" value="LOCAL" />
       <updated>1650625048015</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Changes">
+      <created>1650626335401</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1650626335401</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TerminalProjectNonSharedOptionsProvider">
@@ -132,7 +152,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="origin/master" />
+                        <option value="master" />
                       </list>
                     </value>
                   </entry>
@@ -147,8 +167,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="&quot;Mise en place connexion/deconnexion/inscription&quot; 27/02" />
-    <MESSAGE value="Changes" />
     <MESSAGE value="Revert &quot;Delete .idea directory&quot;&#10;&#10;This reverts commit a09eca61" />
-    <option name="LAST_COMMIT_MESSAGE" value="Revert &quot;Delete .idea directory&quot;&#10;&#10;This reverts commit a09eca61" />
+    <MESSAGE value="Changes" />
+    <option name="LAST_COMMIT_MESSAGE" value="Changes" />
   </component>
 </project>

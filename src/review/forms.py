@@ -35,9 +35,8 @@ class NewReviewForm(forms.ModelForm):
         fields = ['headline', 'rating', 'body']
 
 
-class FollowUsersForm(forms.ModelForm):
-    User = get_user_model()
-
-    class Meta:
-        model = models.UserFollows
-        fields = ['followed_user']
+class FollowUsersForm(forms.Form):
+    followed_user = forms.CharField(
+        label=False,
+        widget=forms.TextInput()
+    )
