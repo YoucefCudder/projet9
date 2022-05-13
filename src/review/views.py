@@ -175,6 +175,9 @@ def update(request, pk):
     if request.method == 'POST':
         form = NewTicketForm(request.POST, request.FILES, instance=ticket_to_update)
         if form.is_valid():
+            title = form.cleaned_data['title']
+            description = form.cleaned_data['description']
+            image = form.cleaned_data['image']
             form.save()
-            redirect('review/feed.html')
+            return redirect('feed')
     return render(request, 'review/update_ticket.html', {'form': form})
