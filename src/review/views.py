@@ -10,13 +10,48 @@ from . import models
 from django.db import IntegrityError
 
 
+def get_user_follows(user):
+    follows = models.UserFollows.objects.filter(user=user)
+    followed_users = []
+    for follow in follows:
+        followed_users.append(follow.followed_user)
+
+    return followed_users
+
+
+@login_required
+def get_users_viewable_reviews(user):
+    followed_users = get_user_follows(user)
+    review = Review.objects.all(user__in=followed_users)
+    return review
+
+
+@login_required
+def get_users_viewable_tickets(user):
+    followed_users = get_user_follows(user)
+    tickets = Ticket.objects.all(user__in=followed_users)
+    return tickets
+
+
 @login_required
 def home(request):
-    feed = models.Ticket.objects.filter(contributors__in=request.user.followed_user.all())
-    context = {
-        'feed': feed,
-    }
-    return render(request, 'review/home.html', context=context)
+    users_followed = get_user_follows(request.user)
+    # feed = models.Ticket.objects.filter(contributors__in=request.users_followed.all())
+    reviews = get_users_viewable_reviews(request.user)
+    # returns queryset of reviews
+    reviews = reviews.annotate(content_type=Value('REVIEW', CharField()))
+
+    tickets = get_users_viewable_tickets(request.user)
+    # returns queryset of tickets
+    tickets = tickets.annotate(content_type=Value('TICKET', CharField()))
+
+    # combine and sort the two types of posts
+    posts = sorted(
+        chain(reviews, tickets),
+        key=lambda post: post.time_created,
+        reverse=True
+    )
+    return render(request, 'review/feed.html', context={'posts': posts})
 
 
 @login_required
@@ -178,6 +213,6 @@ def update(request, pk):
             title = form.cleaned_data['title']
             description = form.cleaned_data['description']
             image = form.cleaned_data['image']
-            form.save()
+            Ticket(title=title, description=description, image=image).save()
             return redirect('feed')
     return render(request, 'review/update_ticket.html', {'form': form})

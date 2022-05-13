@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="f018afd6-c0ac-46ba-9030-eb98a6530b18" name="Changes" comment="Changes">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/src/db.sqlite3" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/review/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/review/models.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/review/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/review/views.py" afterDir="false" />
     </list>
@@ -46,6 +45,7 @@
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="false" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
@@ -134,7 +134,14 @@
       <option name="project" value="LOCAL" />
       <updated>1652265753937</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Changes">
+      <created>1652451150178</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1652451150178</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TerminalProjectNonSharedOptionsProvider">
