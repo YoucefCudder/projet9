@@ -2,7 +2,148 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f018afd6-c0ac-46ba-9030-eb98a6530b18" name="Changes" comment="Changes">
+      <change beforePath="$PROJECT_DIR$/.env/Lib/site-packages/PIL/BdfFontFile.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.env/Lib/site-packages/PIL/BlpImagePlugin.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.env/Lib/site-packages/PIL/BmpImagePlugin.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.env/Lib/site-packages/PIL/BufrStubImagePlugin.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.env/Lib/site-packages/PIL/ContainerIO.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.env/Lib/site-packages/PIL/CurImagePlugin.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.env/Lib/site-packages/PIL/DcxImagePlugin.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.env/Lib/site-packages/PIL/DdsImagePlugin.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.env/Lib/site-packages/PIL/EpsImagePlugin.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.env/Lib/site-packages/PIL/ExifTags.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.env/Lib/site-packages/PIL/FitsStubImagePlugin.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.env/Lib/site-packages/PIL/FliImagePlugin.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.env/Lib/site-packages/PIL/FontFile.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.env/Lib/site-packages/PIL/FpxImagePlugin.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.env/Lib/site-packages/PIL/FtexImagePlugin.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.env/Lib/site-packages/PIL/GbrImagePlugin.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.env/Lib/site-packages/PIL/GdImageFile.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.env/Lib/site-packages/PIL/GifImagePlugin.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.env/Lib/site-packages/PIL/GimpGradientFile.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.env/Lib/site-packages/PIL/GimpPaletteFile.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.env/Lib/site-packages/PIL/GribStubImagePlugin.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.env/Lib/site-packages/PIL/Hdf5StubImagePlugin.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.env/Lib/site-packages/PIL/IcnsImagePlugin.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.env/Lib/site-packages/PIL/IcoImagePlugin.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.env/Lib/site-packages/PIL/ImImagePlugin.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.env/Lib/site-packages/PIL/Image.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.env/Lib/site-packages/PIL/ImageChops.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.env/Lib/site-packages/PIL/ImageCms.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.env/Lib/site-packages/PIL/ImageColor.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.env/Lib/site-packages/PIL/ImageDraw.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.env/Lib/site-packages/PIL/ImageDraw2.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.env/Lib/site-packages/PIL/ImageEnhance.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.env/Lib/site-packages/PIL/ImageFile.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.env/Lib/site-packages/PIL/ImageFilter.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.env/Lib/site-packages/PIL/ImageFont.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.env/Lib/site-packages/PIL/ImageGrab.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.env/Lib/site-packages/PIL/ImageMath.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.env/Lib/site-packages/PIL/ImageMode.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.env/Lib/site-packages/PIL/ImageMorph.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.env/Lib/site-packages/PIL/ImageOps.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.env/Lib/site-packages/PIL/ImagePalette.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.env/Lib/site-packages/PIL/ImagePath.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.env/Lib/site-packages/PIL/ImageQt.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.env/Lib/site-packages/PIL/ImageSequence.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.env/Lib/site-packages/PIL/ImageShow.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.env/Lib/site-packages/PIL/ImageStat.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.env/Lib/site-packages/PIL/ImageTk.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.env/Lib/site-packages/PIL/ImageTransform.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.env/Lib/site-packages/PIL/ImageWin.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.env/Lib/site-packages/PIL/ImtImagePlugin.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.env/Lib/site-packages/PIL/IptcImagePlugin.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.env/Lib/site-packages/PIL/Jpeg2KImagePlugin.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.env/Lib/site-packages/PIL/JpegImagePlugin.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.env/Lib/site-packages/PIL/JpegPresets.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.env/Lib/site-packages/PIL/McIdasImagePlugin.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.env/Lib/site-packages/PIL/MicImagePlugin.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.env/Lib/site-packages/PIL/MpegImagePlugin.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.env/Lib/site-packages/PIL/MpoImagePlugin.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.env/Lib/site-packages/PIL/MspImagePlugin.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.env/Lib/site-packages/PIL/PSDraw.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.env/Lib/site-packages/PIL/PaletteFile.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.env/Lib/site-packages/PIL/PalmImagePlugin.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.env/Lib/site-packages/PIL/PcdImagePlugin.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.env/Lib/site-packages/PIL/PcfFontFile.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.env/Lib/site-packages/PIL/PcxImagePlugin.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.env/Lib/site-packages/PIL/PdfImagePlugin.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.env/Lib/site-packages/PIL/PdfParser.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.env/Lib/site-packages/PIL/PixarImagePlugin.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.env/Lib/site-packages/PIL/PngImagePlugin.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.env/Lib/site-packages/PIL/PpmImagePlugin.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.env/Lib/site-packages/PIL/PsdImagePlugin.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.env/Lib/site-packages/PIL/PyAccess.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.env/Lib/site-packages/PIL/SgiImagePlugin.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.env/Lib/site-packages/PIL/SpiderImagePlugin.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.env/Lib/site-packages/PIL/SunImagePlugin.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.env/Lib/site-packages/PIL/TarIO.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.env/Lib/site-packages/PIL/TgaImagePlugin.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.env/Lib/site-packages/PIL/TiffImagePlugin.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.env/Lib/site-packages/PIL/TiffTags.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.env/Lib/site-packages/PIL/WalImageFile.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.env/Lib/site-packages/PIL/WebPImagePlugin.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.env/Lib/site-packages/PIL/WmfImagePlugin.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.env/Lib/site-packages/PIL/XVThumbImagePlugin.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.env/Lib/site-packages/PIL/XbmImagePlugin.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.env/Lib/site-packages/PIL/XpmImagePlugin.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.env/Lib/site-packages/PIL/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.env/Lib/site-packages/PIL/__main__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.env/Lib/site-packages/PIL/_binary.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.env/Lib/site-packages/PIL/_imaging.cp38-win_amd64.pyd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.env/Lib/site-packages/PIL/_imagingcms.cp38-win_amd64.pyd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.env/Lib/site-packages/PIL/_imagingft.cp38-win_amd64.pyd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.env/Lib/site-packages/PIL/_imagingmath.cp38-win_amd64.pyd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.env/Lib/site-packages/PIL/_imagingmorph.cp38-win_amd64.pyd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.env/Lib/site-packages/PIL/_imagingtk.cp38-win_amd64.pyd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.env/Lib/site-packages/PIL/_tkinter_finder.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.env/Lib/site-packages/PIL/_util.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.env/Lib/site-packages/PIL/_version.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.env/Lib/site-packages/PIL/_webp.cp38-win_amd64.pyd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.env/Lib/site-packages/PIL/concrt140.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.env/Lib/site-packages/PIL/features.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.env/Lib/site-packages/PIL/msvcp140.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.env/Lib/site-packages/PIL/msvcp140_1.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.env/Lib/site-packages/PIL/msvcp140_2.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.env/Lib/site-packages/PIL/msvcp140_atomic_wait.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.env/Lib/site-packages/PIL/msvcp140_codecvt_ids.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.env/Lib/site-packages/PIL/vccorlib140.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.env/Lib/site-packages/PIL/vcruntime140.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.env/Lib/site-packages/PIL/vcruntime140_1.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.env/Lib/site-packages/Pillow-9.0.1.dist-info/INSTALLER" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.env/Lib/site-packages/Pillow-9.0.1.dist-info/LICENSE" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.env/Lib/site-packages/Pillow-9.0.1.dist-info/METADATA" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.env/Lib/site-packages/Pillow-9.0.1.dist-info/RECORD" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.env/Lib/site-packages/Pillow-9.0.1.dist-info/REQUESTED" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.env/Lib/site-packages/Pillow-9.0.1.dist-info/WHEEL" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.env/Lib/site-packages/Pillow-9.0.1.dist-info/top_level.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.env/Lib/site-packages/Pillow-9.0.1.dist-info/zip-safe" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.env/Lib/site-packages/backport-0.3.1.dist-info/INSTALLER" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.env/Lib/site-packages/backport-0.3.1.dist-info/LICENSE" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.env/Lib/site-packages/backport-0.3.1.dist-info/METADATA" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.env/Lib/site-packages/backport-0.3.1.dist-info/RECORD" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.env/Lib/site-packages/backport-0.3.1.dist-info/REQUESTED" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.env/Lib/site-packages/backport-0.3.1.dist-info/WHEEL" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.env/Lib/site-packages/backport/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.env/Lib/site-packages/backport/abc_ext.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.env/Lib/site-packages/backport/dataclasses.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.env/Lib/site-packages/backport/inspect_ext.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.env/Lib/site-packages/backport/types.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.env/Lib/site-packages/backport/typing.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.env/Lib/site-packages/review-1510-py3.8.egg-info/PKG-INFO" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.env/Lib/site-packages/review-1510-py3.8.egg-info/SOURCES.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.env/Lib/site-packages/review-1510-py3.8.egg-info/dependency_links.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.env/Lib/site-packages/review-1510-py3.8.egg-info/installed-files.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.env/Lib/site-packages/review-1510-py3.8.egg-info/top_level.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.env/Lib/site-packages/review.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.name" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.name" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/.idea/src.iml" beforeDir="false" afterPath="$PROJECT_DIR$/src/.idea/src.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LITReview/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/LITReview/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LITReview/templates/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/LITReview/templates/base.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LITReview/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/LITReview/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/review/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/review/models.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/review/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/review/views.py" afterDir="false" />
     </list>
@@ -47,19 +188,22 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showExcludedFiles" value="false" />
     <option name="showLibraryContents" value="true" />
+    <option name="showMembers" value="true" />
   </component>
   <component name="PropertiesComponent">
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File" value="Python" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
-    <property name="settings.editor.selected.configurable" value="project.scopes" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
     <property name="settings.editor.splitter.proportion" value="0.24120083" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Youcef\Desktop\projet9\src\static" />
       <recent name="C:\Users\Youcef\Desktop\projet9\src\user\templates" />
     </key>
     <key name="MoveFile.RECENT_KEYS">

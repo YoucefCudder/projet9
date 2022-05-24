@@ -43,7 +43,8 @@ class UserFollows(models.Model):
         )
 
 
-"""class User(AbstractUser):
+"""
+class User(AbstractUser):
     CREATOR = "CREATOR"
     SUBSCRIBER = "SUBSCRIBER"
 
@@ -60,4 +61,5 @@ class UserFollows(models.Model):
         symmetrical=False,
         verbose_name="suit",
     )
+
 """

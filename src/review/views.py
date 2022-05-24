@@ -1,17 +1,40 @@
+from itertools import chain
+from django.db.models import Q
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
-from django.shortcuts import render, redirect, HttpResponseRedirect, get_object_or_404
+from django.db import IntegrityError
+from django.shortcuts import render, redirect
 from django.utils.datastructures import MultiValueDictKeyError
 from django.views.generic import DetailView
-from .forms import NewTicketForm, FollowUsersForm, NewReviewForm
 from review.models import Ticket, Review
 from . import models
-from django.db import IntegrityError
+from .forms import NewTicketForm, FollowUsersForm, NewReviewForm
+
+
+@login_required
+def home(request):
+    users_followed = get_user_follows(request.user)
+    feed = models.Ticket.objects.filter(user__in=request.users_followed.all())
+    reviews = get_users_viewable_reviews(request.user)
+    # returns queryset of reviews
+    reviews = reviews.annotate(content_type=Value('REVIEW', CharField()))
+
+    tickets = get_users_viewable_tickets(request.user)
+    # returns queryset of tickets
+    tickets = tickets.annotate(content_type=Value('TICKET', CharField()))
+
+    # combine and sort the two types of posts
+    posts = sorted(
+        chain(reviews, tickets),
+        key=lambda post: post.time_created,
+        reverse=True
+    )
+    return render(request, 'review/feed.html', context={'posts': posts})
 
 
 def get_user_follows(user):
-    follows = models.UserFollows.objects.filter(user=user)
+    follows = models.UserFollows.objects.filter(followed_user=user)
     followed_users = []
     for follow in follows:
         followed_users.append(follow.followed_user)
@@ -31,27 +54,6 @@ def get_users_viewable_tickets(user):
     followed_users = get_user_follows(user)
     tickets = Ticket.objects.all(user__in=followed_users)
     return tickets
-
-
-@login_required
-def home(request):
-    users_followed = get_user_follows(request.user)
-    # feed = models.Ticket.objects.filter(contributors__in=request.users_followed.all())
-    reviews = get_users_viewable_reviews(request.user)
-    # returns queryset of reviews
-    reviews = reviews.annotate(content_type=Value('REVIEW', CharField()))
-
-    tickets = get_users_viewable_tickets(request.user)
-    # returns queryset of tickets
-    tickets = tickets.annotate(content_type=Value('TICKET', CharField()))
-
-    # combine and sort the two types of posts
-    posts = sorted(
-        chain(reviews, tickets),
-        key=lambda post: post.time_created,
-        reverse=True
-    )
-    return render(request, 'review/feed.html', context={'posts': posts})
 
 
 @login_required
