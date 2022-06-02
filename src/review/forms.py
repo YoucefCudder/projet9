@@ -1,7 +1,6 @@
 from django import forms
 from django.forms import ImageField, RadioSelect
 from . import models
-from django.contrib.auth import get_user_model
 
 
 class NewTicketForm(forms.ModelForm):

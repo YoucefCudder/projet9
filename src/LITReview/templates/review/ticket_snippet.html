@@ -1,4 +1,4 @@
-<div class="w-full bg-blue-100 rounded-lg sahdow-lg overflow-hidden flex flex-col md:flex-row">
+<div>
 </div>
 <div> {% if ticket.image %}
     <div>
@@ -16,11 +16,26 @@
             le {{ ticket.time_created }}
         </p>
         <p>{{ ticket.description }}</p>
+        <ul>
+            <li><a href="{% url 'delete' ticket.id %}"> Supprimer </a></li>
+            <li><a href="{% url 'update' ticket.id %}">Mettre à jour </a></li>
+            <li><a href="{% url 'feed' %}">Retour </a></li>
 
-        <a href="{% url 'delete' ticket.id %}">Supprimer </a>
-        <a href="{% url 'update' ticket.id %}">Mettre à jour </a>
+        </ul>
+
+        <div>
+
+
+            {% for review in reviews %}
+                {{review.ticket}}
+            {% else %}
+            {
 
 
 
+
+            <p><a href="{% url 'review_response' ticket.id %}">Ajouter une critique </a></p>
+
+        </div>
     </div>
 </div>

@@ -7,13 +7,17 @@
 
     <p>Vous êtes connecté !</p>
 
-    <p>
-        <a href="{% url 'feed' %}"> feed </a>
 
-        <a href="{% url 'password_change' %}"> Changer de mot de passe </a>
+    <a href="{% url 'feed' %}"> feed </a>
 
-        <a href="{% url 'logout' %}"> se déconnecter </a>
-    </p>
+    <a href="{% url 'password_change' %}"> Changer de mot de passe </a>
+
+    <a href="{% url 'logout' %}"> se déconnecter </a>
+    <div>
+
+    </div>
 </div>
+
+
 {% endblock content %}
-!
+

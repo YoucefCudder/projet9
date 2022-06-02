@@ -9,23 +9,25 @@
             <fieldset class="form-group">
                 {% if request.get_full_path == "/review/new/" %}
                 <h3>Livre / Article</h3>
-
                 {{ ticket_form.as_p }}
+
                 {% else %}
+                <h4> Replying to {{ post.user }} :</h4>
+
                 <article>
                     <div>
-                        <h3>{{ ticket.title }}</h3>
+                        <h3>{{ post.title }}</h3>
                         <div>
-                            {% if ticket.image %}
+                            {% if post.image %}
                             <img alt="{{ ticket.title }}" src="{{ ticket.image.url }}">
                             {% endif %}
-                            <p>{{ ticket.description }}</p>
+                            <p>{{ post.description }}</p>
                         </div>
                     </div>
                 </article>
                 {% endif %}
-                {{ review_form.as_p }}
-                <input type="submit" value="Envoyer">
+                            {{ review_form.as_p }}
+                            <input type="submit" value="Envoyer">
             </fieldset>
         </form>
     </div>
