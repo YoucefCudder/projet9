@@ -1,23 +1,32 @@
 {% extends 'base.html' %}
+
+
 {% block content %}
 <div>
-
-    <a href="{% url 'create_ticket' %}"> Nouveau ticket</a>
-    <a href="{% url 'review_new' %}"> Nouvelle critique</a>
 
     <p>Vous êtes connecté !</p>
 
 
-    <a href="{% url 'feed' %}"> feed </a>
-
-    <a href="{% url 'password_change' %}"> Changer de mot de passe </a>
-
-    <a href="{% url 'logout' %}"> se déconnecter </a>
     <div>
+
+
+        {% for post in posts %}
+        {% if post.content_type == 'REVIEW' %}
+        <fieldset>
+            {% include 'review/review_snippet.html' with review=post %}
+
+        </fieldset>
+        {% elif post.content_type == 'TICKET' %}
+        <fieldset>
+            {% include 'review/ticket_snippet.html' with ticket=post %}
+
+        </fieldset>
+        {% endif %}
+        {% endfor %}
+
 
     </div>
 </div>
-
 
 {% endblock content %}
 

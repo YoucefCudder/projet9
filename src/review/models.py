@@ -2,8 +2,6 @@
 from django.core.validators import MinValueValidator, MaxValueValidator
 from django.conf import settings
 from django.db import models
-from PIL import Image
-from os import path
 
 
 class Ticket(models.Model):
@@ -20,14 +18,7 @@ class Ticket(models.Model):
     def __str__(self):
         return f" {self.title} - {self.user}"
 
-    def resize_image(self):
-        image = Image.open(self.image)
-        image.thumbnail(self.IMAGE_MAX_SIZE)
-        image.save(self.image.path)
 
-    def save(self, *args, **kwargs):
-        super().save(*args, **kwargs)
-        self.resize_image()
 
 
 class Review(models.Model):

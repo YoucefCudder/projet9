@@ -1,13 +1,13 @@
-{% extends 'user/follow_users_form.html' %}
+{% extends 'base.html' %}
 
 {% block content %}
 
-{% if ticket.user == request.user %}
+{% if post.user == request.user %}
 
 <div>
     <ul>
-        {% for ticket in tickets %}
-        <li><a href="{% url 'ticket_snippet' ticket.id %}">{{ ticket.title }}</a></li>
+        {% for p in post %}
+        <li><a href="{% url 'ticket_snippet' ticket.id %}">{{ p.title }}</a></li>
         {% endfor %}
     </ul>
 
@@ -16,7 +16,7 @@
 {% endif %}
 
 {% for follow_user in follow_users %}
-
+{{follow_user}}
 {% endfor %}
 
 

@@ -1,41 +1,18 @@
-<div>
-</div>
-<div> {% if ticket.image %}
-    <div>
-        <img alt="La couverture du livre {{ ticket.title }}" src="{{ ticket.image.url }}">
+<div class="card mx-auto" style="width: 36rem;">
+    {% if post.image %}
+    <div class="col-md-8 px-0 mx-auto">
+    <img src="{{ post.image.url }}" class="img-fluid" alt="La couverture du livre {{ post.title }}">
     </div>
     {% endif %}
-    <div>
-        <h2>{{ ticket.title }}</h2>
-        <p>
-            {% if ticket.user != request.user%}
-            proposé par {{ ticket.user.username }}
-            {% else %}
-            que vous avez proposé
-            {% endif %}
-            le {{ ticket.time_created }}
-        </p>
-        <p>{{ ticket.description }}</p>
-        <ul>
-            <li><a href="{% url 'delete' ticket.id %}"> Supprimer </a></li>
-            <li><a href="{% url 'update' ticket.id %}">Mettre à jour </a></li>
-            <li><a href="{% url 'feed' %}">Retour </a></li>
-
-        </ul>
-
-        <div>
 
 
-            {% for review in reviews %}
-                {{review.ticket}}
-            {% else %}
-            {
-
-
-
-
-            <p><a href="{% url 'review_response' ticket.id %}">Ajouter une critique </a></p>
-
-        </div>
+    <div class="card-body">
+        <h5 class="card-title"> {{ post.title }}</h5>
+        <p class="card-text"> proposé par {{ post.user.username }}</p>
+        <p class="card-text"> Descrption:  {{ post.description }}</p>
+        <p  class="card-text">{{ post.time_created|date:"H:i, F d, Y" }}</p>
+        {% if post not in replied %}
+        <a href="{% url 'review_response' post.pk %}" class="btn btn-primary">Faire une critique de ce ticket</a>
+        {% endif %}
     </div>
 </div>

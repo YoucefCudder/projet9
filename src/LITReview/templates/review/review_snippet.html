@@ -1,5 +1,29 @@
-{% extends "base.html" %}
-{% include 'review/review_snippet.html' %}
-
 {% block content %}
-{% endblock content %}
+<div class="card mx-auto" style="width: 36rem;">
+    {% if post.ticket.image %}
+    <div class="col-md-8 px-0 mx-auto">
+        <img src="{{ post.ticket.image.url }}"
+             alt="{{ post.ticket.title }}" class="img-fluid">
+    </div>
+    {% endif %}
+
+    <div class="card-body">
+        <h5 class="card-title"> {{ post.headline }}</h5>
+         <h6 class="mb-0"><span class="badge badge-success">Review</span></h6>
+    <h2 class="mt-0">
+        <a class="text-dark" href="{% url 'review_snippet' post.id %}">{{ post.headline }}</a> -
+        <p class="star-rating-{{ post.rating }}" id="stars">
+            <i class="bi bi-star-fill"></i>
+            <i class="bi bi-star-fill"></i>
+            <i class="bi bi-star-fill"></i>
+            <i class="bi bi-star-fill"></i>
+            <i class="bi bi-star-fill"></i>
+        </p>
+    </h2>
+        <p class="card-text">{{ post.time_created|date:"H:i, F d, Y" }}</p>
+    </div>
+</div>
+
+
+
+{% endblock %}

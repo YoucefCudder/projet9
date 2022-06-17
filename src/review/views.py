@@ -4,9 +4,11 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.db import IntegrityError
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
+from django.urls import reverse_lazy
 from django.utils.datastructures import MultiValueDictKeyError
-from django.views.generic import DetailView
+from django.utils.decorators import method_decorator
+from django.views.generic import DetailView, DeleteView
 from .models import Ticket, Review, UserFollows
 from .forms import NewTicketForm, FollowUsersForm, NewReviewForm
 from django.core.exceptions import ObjectDoesNotExist
@@ -24,15 +26,15 @@ def home(request):
     tickets = get_users_viewable_tickets(request.user)
     # returns queryset of tickets
     tickets = tickets.annotate(content_type=Value('TICKET', CharField()))
-
+    replied_tickets = get_replied_tickets(tickets=tickets)
     # combine and sort the two types of posts
     posts = sorted(
         chain(reviews, tickets),
         key=lambda post: post.time_created,
         reverse=True
     )
-
-    return render(request, 'review/home.html', context={'posts': posts, 'followed_users': followed_users})
+    return render(request, 'review/home.html', context={'posts': posts, 'followed_users': followed_users,
+                                                        'replied': replied_tickets})
 
 
 def get_user_follows(request):
@@ -146,41 +148,60 @@ def review_response(request, pk):
 
 class ReviewView(DetailView):
     model = Review
-    login_url = 'home'
-    redirect_field_name = 'redirect_to'
-    context_object_name = "review"
 
-    def get_context_data(self, **kwargs):
+    def get_context_data(self, *args, **kwargs):
         # Call the base implementation first to get a context
         context = super().get_context_data(**kwargs)
         # Add in a QuerySet of all the books
-        context['review'] = Review.objects.all()
-        context['ticket'] = Ticket.objects.all()
+        context['ticket'] = Ticket.objects.filter(*args)
+        context['post'] = Review.objects.filter(*args)
+
         return context
 
 
 class TicketView(DetailView):
     model = Ticket
 
-    def get_context_data(self, **kwargs):
+    def get_context_data(self, *args, **kwargs):
         context = super(TicketView, self).get_context_data(**kwargs)
-        context['review'] = Review.objects.all()
+        context['review'] = Review.objects.filter(*args)
+        context['post'] = Ticket.objects.filter(*args)
 
+        context['replied'] = get_replied_tickets(tickets=context['post'])
         return context
 
 
-@login_required
-def review_detail(request, pk):
-    review = Review.objects.get(id=pk)
-    followed_users = get_user_follows(request.user)
-
+def ticket_detail(request, pk):
+    ticket = get_object_or_404(Ticket, pk=pk)
     context = {
-        'post': review,
-        'title': 'Review detail',
-        'followed_users': followed_users
+        'post': ticket,
+        'title': 'Ticket detail'
+
     }
 
-    return render(request, 'reviews/post_detail.html', context)
+    return render(request, 'review/post.html', context)
+
+
+def review_detail(request, pk):
+    review = get_object_or_404(Review, pk=pk)
+    context = {
+        'post': review,
+        'title': 'Review detail'
+    }
+
+    return render(request, 'review/post.html', context)
+
+
+def get_replied_tickets(tickets):
+    replied_tickets = []
+    for ticket in tickets:
+        try:
+            replied = Review.objects.get(ticket=ticket)
+            if replied:
+                replied_tickets.append(replied.ticket)
+        except ObjectDoesNotExist:
+            pass
+    return replied_tickets
 
 
 @login_required
@@ -197,6 +218,34 @@ def delete_ticket(request, pk):
     ticket_to_delete = Ticket.objects.get(pk)
     if ticket_to_delete:
         ticket_to_delete.delete()
+    return render(request, 'review/confirm_delete_ticket.html')
+
+
+class DeleteTicketView(DeleteView):
+    model = Ticket
+    template_name = "review/confirm_delete_ticket.html"
+    success_url = reverse_lazy("home")
+
+
+@method_decorator(login_required, name='dispatch')
+class DeleteReviewView(DeleteView):
+    model = Review
+    context_object_name = 'review'
+    template_name = "review/confirm_delete_review.html"
+    success_url = reverse_lazy("home")
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(args, kwargs)
+        self.object = self.get_object()
+
+    def test_func(self):
+        return self.object.user == self.request.user
+
+
+def delete_review(request, pk):
+    review_to_delete = Review.objects.filter(pk)
+    if review_to_delete:
+        review_to_delete.delete()
     return render(request, 'review/feed.html')
 
 
@@ -207,12 +256,21 @@ def update_ticket(request, pk):
     if request.method == 'POST':
         form = NewTicketForm(request.POST, request.FILES, instance=ticket_to_update)
         if form.is_valid():
-            title = form.cleaned_data['title']
-            description = form.cleaned_data['description']
-            image = form.cleaned_data['image']
-            Ticket(title=title, description=description, image=image).save()
+            form.save()
             return redirect('feed')
     return render(request, 'review/update_ticket.html', {'form': form})
+
+
+@login_required()
+def update_review(request, pk):
+    review_to_update = Review.objects.get(pk=pk)
+    review_form = NewReviewForm(instance=review_to_update)
+    if request.method == 'POST':
+        review_form = NewReviewForm(request.POST, instance=review_to_update)
+        if review_form.is_valid():
+            review_form.save()
+            return redirect('home')
+    return render(request, 'review/update_review.html', {'review_form': review_form})
 
 
 @login_required

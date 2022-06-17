@@ -24,12 +24,12 @@ from review.views import TicketView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', auth_views.LoginView.as_view(
+    path('login/', auth_views.LoginView.as_view(
         template_name='user/login.html',
         redirect_authenticated_user=True
     ), name='login'),
     path('logout/', auth_views.LogoutView.as_view(), name='logout'),
-    path('home/', review.views.home, name='home'),
+    path('', review.views.home, name='home'),
     path('signup/', views.signup_page, name='signup'),
     path('user/password_change/', auth_views.PasswordChangeView.as_view(template_name='user/password_change.html'),
          name="password_change"),
@@ -39,14 +39,15 @@ urlpatterns = [
 
 
     path('ticket/create_ticket/', review.views.create_ticket, name='create_ticket'),
-    path('ticket/<int:pk>', TicketView.as_view(), name='ticket_snippet'),
-    # path('ticket/<int:pk>/create_review', review.views.review_response, name='create_review'),
-    path('ticket/<int:pk>/delete', review.views.delete_ticket, name='delete'),
-    path('ticket/<int:pk>/update', review.views.update_ticket, name='update'),
+    path('ticket/<int:pk>', review.views.ticket_detail, name='ticket_detail'),
+    path('ticket/delete/<int:pk>', review.views.DeleteTicketView.as_view(), name='delete_ticket'),
+    path('ticket/update/<int:pk>', review.views.update_ticket, name='update_ticket'),
 
     path('review/new/', review.views.review_with_ticket, name='create_review'),
-    path('review/<int:pk>', review.views.ReviewView.as_view(), name='review_snippet'),
+    path('review/<int:pk>', review.views.review_detail, name='review_snippet'),
+    path('review/update/<int:pk>', review.views.update_review, name='update_review'),
     path('review/response/<int:pk>', review.views.review_response, name='review_response'),
+    path('review/<int:pk>/delete', review.views.DeleteReviewView.as_view(), name='delete_review'),
 
     path('feed/', review.views.feed, name='feed'),
     path('follow_users/', review.views.follow_users, name='follow_users'),
