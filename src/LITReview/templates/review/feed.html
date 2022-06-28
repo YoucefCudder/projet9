@@ -6,7 +6,9 @@
 
 <ul>
  {% for ticket in tickets %}
+ {% if ticket.user == request.user %}
   <li><a href="{% url 'ticket_snippet' ticket.id %}">{{ ticket.title }}</a></li>
+ {% endif %}
  {% endfor %}
 </ul>
 

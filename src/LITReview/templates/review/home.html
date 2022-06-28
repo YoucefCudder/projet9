@@ -2,30 +2,43 @@
 
 
 {% block content %}
+<h1 class="flex justify-content-center align-items-center input-group mb-3"> LIT REVIEW</h1>
+<div>
+    {% if user.is_authenticated %}Hello, {{ user.username }}.
+    <a href="{% url 'password_change' %}"> Changer de mot de passe </a>
+</div>
+
+
+{% endif %}
+
+
+    <div class="container" role="main">
+
+        <div  class="center-block text-center mb-3">
+            <button type="submit" class="btn btn-light"><a href="{% url 'create_ticket' %}">Créer un ticket </a></button>
+            <button type="submit" class="btn btn-light"><a href="{% url 'create_review' %}">Créer une critique</a></button>
+        </div>
+
+
+    </div> <!-- /container -->
 <div>
 
-    <p>Vous êtes connecté !</p>
+
+    {% for post in posts %}
+    {% if post.content_type == 'REVIEW' %}
+    <fieldset>
+        {% include 'review/review_snippet.html' with review=post %}
+
+    </fieldset>
+    {% elif post.content_type == 'TICKET' %}
+    <fieldset>
+        {% include 'review/ticket_snippet.html' with ticket=post %}
+
+    </fieldset>
+    {% endif %}
+    {% endfor %}
 
 
-    <div>
-
-
-        {% for post in posts %}
-        {% if post.content_type == 'REVIEW' %}
-        <fieldset>
-            {% include 'review/review_snippet.html' with review=post %}
-
-        </fieldset>
-        {% elif post.content_type == 'TICKET' %}
-        <fieldset>
-            {% include 'review/ticket_snippet.html' with ticket=post %}
-
-        </fieldset>
-        {% endif %}
-        {% endfor %}
-
-
-    </div>
 </div>
 
 {% endblock content %}

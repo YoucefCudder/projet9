@@ -18,7 +18,6 @@ from django.core.exceptions import ObjectDoesNotExist
 def home(request):
     followed_users = get_user_follows(request.user)
 
-    # feed = Ticket.objects.filter(ticket__in=request.user.following.all())
     reviews = get_users_viewable_reviews(request.user)
     # returns queryset of reviews
     reviews = reviews.annotate(content_type=Value('REVIEW', CharField()))
@@ -33,8 +32,9 @@ def home(request):
         key=lambda post: post.time_created,
         reverse=True
     )
-    return render(request, 'review/home.html', context={'posts': posts, 'followed_users': followed_users,
-                                                        'replied': replied_tickets})
+    return render(request, 'review/home.html',
+                  context={'posts': posts, 'followed_users': followed_users,
+                           'replied': replied_tickets})
 
 
 def get_user_follows(request):
@@ -63,6 +63,7 @@ def get_users_viewable_tickets(user):
 
 @login_required
 def create_ticket(request):
+    """ DOCSTRING /!/ """
     form = NewTicketForm
     if request.method == 'POST':
         ticket_form = NewTicketForm(request.POST, request.FILES)
@@ -107,7 +108,7 @@ def review_with_ticket(request):
             body=request.POST['body']
         )
         review.save()
-        return redirect('feed')
+        return redirect('home')
 
     context = {
         'ticket_form': ticket_form,
@@ -132,8 +133,9 @@ def review_response(request, pk):
                 rating=request.POST['rating'],
                 body=request.POST['body']
             )
-            messages.success(request, f'critique de "{ticket.title}" bien postée')
-            return redirect('feed')
+            messages.success(request,
+                             f'critique de "{ticket.title}" bien postée')
+            return redirect('home')
 
     else:
         review_form = NewReviewForm()
@@ -175,7 +177,8 @@ def ticket_detail(request, pk):
     ticket = get_object_or_404(Ticket, pk=pk)
     context = {
         'post': ticket,
-        'title': 'Ticket detail'
+        'title': 'Ticket detail',
+        'dont_show_detail': True
 
     }
 
@@ -186,7 +189,8 @@ def review_detail(request, pk):
     review = get_object_or_404(Review, pk=pk)
     context = {
         'post': review,
-        'title': 'Review detail'
+        'title': 'Review detail',
+        'dont_show_detail': True
     }
 
     return render(request, 'review/post.html', context)
@@ -204,21 +208,22 @@ def get_replied_tickets(tickets):
     return replied_tickets
 
 
-@login_required
-def feed(request):
-    tickets = Ticket.objects.all()
-    return render(request, 'review/feed.html', {'tickets': tickets})
-
-
 def profile_view(request):
-    return render(request, 'user/profile.html')
-
-
-def delete_ticket(request, pk):
-    ticket_to_delete = Ticket.objects.get(pk)
-    if ticket_to_delete:
-        ticket_to_delete.delete()
-    return render(request, 'review/confirm_delete_ticket.html')
+    tickets = sorted(Ticket.objects.filter(),
+                     key=lambda ticket: ticket.time_created, reverse=True)
+    reviews = sorted(Review.objects.filter(),
+                     key=lambda review: review.time_created, reverse=True)
+    posts = sorted(
+        chain(reviews, tickets),
+        key=lambda post: post.time_created,
+        reverse=True
+    )
+    context = {
+        'posts': posts,
+        'tickets': tickets,
+        'reviews': reviews
+    }
+    return render(request, 'user/profile.html', context)
 
 
 class DeleteTicketView(DeleteView):
@@ -246,7 +251,7 @@ def delete_review(request, pk):
     review_to_delete = Review.objects.filter(pk)
     if review_to_delete:
         review_to_delete.delete()
-    return render(request, 'review/feed.html')
+    return render(request, 'review/home.html')
 
 
 @login_required()
@@ -254,10 +259,11 @@ def update_ticket(request, pk):
     ticket_to_update = Ticket.objects.get(pk=pk)
     form = NewTicketForm(instance=ticket_to_update)
     if request.method == 'POST':
-        form = NewTicketForm(request.POST, request.FILES, instance=ticket_to_update)
+        form = NewTicketForm(request.POST,
+                             request.FILES, instance=ticket_to_update)
         if form.is_valid():
             form.save()
-            return redirect('feed')
+            return redirect('home')
     return render(request, 'review/update_ticket.html', {'form': form})
 
 
@@ -266,11 +272,13 @@ def update_review(request, pk):
     review_to_update = Review.objects.get(pk=pk)
     review_form = NewReviewForm(instance=review_to_update)
     if request.method == 'POST':
-        review_form = NewReviewForm(request.POST, instance=review_to_update)
+        review_form = NewReviewForm(request.POST,
+                                    instance=review_to_update)
         if review_form.is_valid():
             review_form.save()
             return redirect('home')
-    return render(request, 'review/update_review.html', {'review_form': review_form})
+    return render(request, 'review/update_review.html',
+                  {'review_form': review_form})
 
 
 @login_required
@@ -279,22 +287,40 @@ def follow_users(request):
         form = FollowUsersForm(request.POST)
         if form.is_valid():
             try:
-                followed_user = User.objects.get(username=request.POST['followed_user'])
+                followed_user = User.objects.get(
+                    username=request.POST['followed_user'])
                 if request.user == followed_user:
-                    messages.error(request, 'vous ne pouvez pas vous abonner à votre compte')
+                    messages.error(
+                        request,
+                        'vous ne pouvez pas vous abonner à votre compte'
+                    )
                 else:
                     try:
-                        UserFollows.objects.create(user=request.user, followed_user=followed_user)
-                        messages.success(request, f'You êtes désormais abonné  à {followed_user}!')
+                        UserFollows.objects.create(
+                            user=request.user, followed_user=followed_user
+                        )
+                        messages.success(
+                            request,
+                            f'You êtes désormais abonné  à {followed_user}!'
+                        )
                     except IntegrityError:
-                        messages.error(request, f'Vous êtes déjà abonné à {followed_user}!')
+                        messages.error(
+                            request,
+                            f'Vous êtes déjà abonné à {followed_user}!'
+                        )
             except ObjectDoesNotExist:
-                messages.error(request, f' {form.data["followed_user"]} does not exist.')
+                messages.error(
+                    request, f' {form.data["followed_user"]} n\'existe pas.'
+                )
     else:
         form = FollowUsersForm()
 
-    user_follows = UserFollows.objects.filter(user=request.user).order_by('followed_user')
-    followed_by = UserFollows.objects.filter(followed_user=request.user).order_by('user')
+    user_follows = UserFollows.objects.filter(
+        user=request.user).order_by('followed_user'
+                                    )
+    followed_by = UserFollows.objects.filter(
+        followed_user=request.user).order_by('user'
+                                             )
     context = {
         'form': form,
         'user_follows': user_follows,
@@ -302,3 +328,10 @@ def follow_users(request):
         'title': 'Abonnements',
     }
     return render(request, 'user/follow_users_form.html', context)
+
+
+class Unfollow(DeleteView):
+    model = UserFollows
+    context_object_name = 'unfollow'
+    template_name = 'user/unfollow.html'
+    success_url = "/follow_users"

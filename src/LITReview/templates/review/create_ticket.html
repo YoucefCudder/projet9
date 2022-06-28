@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% block content %}
 
+<div class="card mx-auto row justify-content-center align-items-center input-group mb-3" style="width: 36rem;">
  <h1>Créer un ticket</h1>
 
 <form action="" method="post" enctype="multipart/form-data">
@@ -8,4 +9,5 @@
   {{ form.as_p }}
   <input type="submit" value="Envoyer">
 </form>
+</div>
 {% endblock %}

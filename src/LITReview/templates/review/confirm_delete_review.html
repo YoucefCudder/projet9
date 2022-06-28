@@ -2,6 +2,8 @@
 
 {% block content %}
     <div class="container flex flex-col">
+        <h1 class="flex justify-content-center align-items-center input-group mb-3"> LIT REVIEW</h1>
+
         <form method="post">
             {% csrf_token %}
             <p>voulez vous vraiment supprimer la critique {{ review.headline }} ?</p>

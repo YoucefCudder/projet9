@@ -1,70 +1,76 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<div>
+<h1 class="row justify-content-center align-items-center input-group mb-3"> LIT REVIEW</h1>
+        <div class="container ">
+        <div class="row justify-content-center align-items-center" style="height:10vh">
+        <h4>S'abonner à un utilisateur</h4>
 
-  <h4>S'abonner à un utilisateur</h4>
-  <fieldset >
-    <form method="POST">
-      {% csrf_token %}
-      <label ></label>
-      <input type="text" name="followed_user" placeholder="Entrez un nom">
-      <div >
-        <button type="submit">Suivre</button>
-      </div>
-    </form>
-  </fieldset>
+        <card class="card justify-content-center">
+            <form method="POST">
+                {% csrf_token %}
+                <label></label>
+                <input type="text" name="followed_user" placeholder="Entrez un nom">
+                <div>
+                    <button type="submit">Suivre</button>
+                </div>
+            </form>
 
-  <div >
-    <div >
-      <h4>Comptes suvis ({{ user_follows.count }})</h4>
-      {% if user_follows %}
         <div>
-          <ul>
-            {% for follow in user_follows %}
-              <li>
-                <p>
+            <div>
+                <h4>Comptes suvis ({{ user_follows.count }})</h4>
+                {% if user_follows %}
+                <div>
+                    <ul>
+                        {% for follow in user_follows %}
+                        <li>
+                            <p>
 
-                  {{ follow.followed_user.username }}
+                                {{ follow.followed_user.username }}
 
-                </p>
-              </li>
-            {% endfor %}
-          </ul>
+
+                                <a class="btn btn-light mt-2" href="{% url 'unfollow' follow.pk %}">
+                    Désabonner
+                            </a></p>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                {% elif not user_follows %}
+                <div>
+                    <div>
+                        <h5>Vous n'êtes abonné à personne.</h5>
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+
+            <div>
+                <h4>Utilisateurs abonnés à votre compte ({{ followed_by.count }})</h4>
+                {% if followed_by %}
+                <div>
+                    <ul>
+                        {% for follow in followed_by %}
+                        <li>
+                            <p>
+                                {{ follow.user.username }}
+                            </p>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                {% elif not followed_by %}
+                <div>
+                    <div>
+                        <h5>Personne ne vous suit.</h5>
+                    </div>
+                </div>
+                {% endif %}
+            </div>
         </div>
-      {% elif not user_follows %}
-        <div>
-          <div>
-            <h5>Vous n'êtes abonné à personne.</h5>
-          </div>
-        </div>
-      {% endif %}
+
+        </card>
     </div>
-
-    <div>
-      <h4 >Utilisateurs abonnés à votre compte ({{ followed_by.count }})</h4>
-      {% if followed_by %}
-        <div>
-          <ul>
-            {% for follow in followed_by %}
-              <li>
-                <p>
-                  {{ follow.user.username }}
-                </p>
-              </li>
-            {% endfor %}
-          </ul>
-        </div>
-      {% elif not followed_by %}
-        <div>
-          <div>
-            <h5>Personne ne vous suit.</h5>
-          </div>
-        </div>
-      {% endif %}
-    </div>
-  </div>
-
 </div>
 
 {% endblock content %}

@@ -1,34 +1,37 @@
 {% extends 'base.html' %}
 {% block content %}
-<h1>Créer une review</h1>
 
-<div class="content-section">
+<div class="card mx-auto row justify-content-center align-items-center input-group mb-3" style="width: 36rem;">
+<h1>Créer une review</h1>
     <form enctype='multipart/form-data' method="POST">
         {% csrf_token %}
 
-            {% if request.get_full_path == "/review/new/" %}
-            <h3>Livre / Article</h3>
-            {{ ticket_form.as_p }}
+        {% if request.get_full_path == "/review/new/" %}
+        <h3>Livre / Article</h3>
+        {{form}}
+        {{ ticket_form.as_p }}
+        {{ review_form.as_p }}
+        <input type="submit" value="Envoyer">
 
-            {% else %}
-            <h4> Replying to {{ post.user }} :</h4>
+        {% else %}
+        <h4> Replying to {{ post.user }} :</h4>
+        {{ form.as_p }}
 
-            {{ form.as_p }}
-            {% csrf_token %}
+        <input type="submit" value="Envoyer">
+        {% csrf_token %}
 
-            <article>
+        <article>
+            <div>
+                <h3>{{ post.title }}</h3>
                 <div>
-                    <h3>{{ post.title }}</h3>
-                    <div>
-                        {% if post.image %}
-                        <img alt="{{ post.title }}" src="{{ post.image.url }}">
-                        {% endif %}
-                        <p>{{ post.description }}</p>
-                    </div>
+                    {% if post.image %}
+                    <img alt="{{ post.title }}" src="{{ post.image.url }}">
+                    {% endif %}
+                    <p>{{ post.description }}</p>
                 </div>
-            </article>
-            <input type="submit" value="Envoyer">
-            {% endif %}
+            </div>
+        </article>
+        {% endif %}
     </form>
 </div>
 {% endblock %}

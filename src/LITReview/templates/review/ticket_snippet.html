@@ -1,4 +1,4 @@
-<div class="card mx-auto" style="width: 36rem;">
+<div class="card mx-auto row justify-content-center align-items-center input-group mb-3" style="width: 36rem;">
     {% if post.image %}
     <div class="col-md-8 px-0 mx-auto">
     <img src="{{ post.image.url }}" class="img-fluid" alt="La couverture du livre {{ post.title }}">
@@ -6,13 +6,26 @@
     {% endif %}
 
 
-    <div class="card-body">
+    <div class="card-body center-block text-center mb-3">
         <h5 class="card-title"> {{ post.title }}</h5>
         <p class="card-text"> proposé par {{ post.user.username }}</p>
-        <p class="card-text"> Descrption:  {{ post.description }}</p>
+        <p class="card-text"> Description:  {{ post.description }}</p>
         <p  class="card-text">{{ post.time_created|date:"H:i, F d, Y" }}</p>
         {% if post not in replied %}
         <a href="{% url 'review_response' post.pk %}" class="btn btn-primary">Faire une critique de ce ticket</a>
         {% endif %}
+        {% if dont_show_detail is None or dont_show_detail == False %}
+        <a href="{% url 'ticket_snippet' post.pk %}" class="btn btn-primary">Détail</a>
+        {% endif %}
+        {% if post.user == request.user and dont_show_detail == True %}
+        <a href="{% url 'update_ticket' post.pk %}" class="btn btn-primary">Modifier </a>
+        <a href="{% url 'delete_ticket' post.pk %}" class="btn btn-primary">Supprimer </a>
+        {% endif %}
+
+
+
+
+
+
     </div>
 </div>

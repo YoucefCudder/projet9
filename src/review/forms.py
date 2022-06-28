@@ -20,7 +20,8 @@ class NewReviewForm(forms.ModelForm):
         initial=1,
         label="Rating",
         widget=RadioSelect(),
-        choices=((1, "1 étoiles"), (2, "2 étoiles"), (3, "3 étoiles"), (4, "4 étoiles"), (5, '5 étoiles'))
+        choices=((1, "1 étoiles"), (2, "2 étoiles"),
+                 (3, "3 étoiles"), (4, "4 étoiles"), (5, '5 étoiles'))
     )
     body = forms.CharField(
         label="Review",

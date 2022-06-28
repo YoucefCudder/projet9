@@ -18,11 +18,11 @@ from django.conf import settings
 from django.contrib import admin
 from django.contrib.auth import views as auth_views
 from django.urls import path
-import review
-from LITReview import views
-from review.views import TicketView
+import review.views
+from LITReview import views as v
 
 urlpatterns = [
+
     path('admin/', admin.site.urls),
     path('login/', auth_views.LoginView.as_view(
         template_name='user/login.html',
@@ -30,27 +30,38 @@ urlpatterns = [
     ), name='login'),
     path('logout/', auth_views.LogoutView.as_view(), name='logout'),
     path('', review.views.home, name='home'),
-    path('signup/', views.signup_page, name='signup'),
-    path('user/password_change/', auth_views.PasswordChangeView.as_view(template_name='user/password_change.html'),
-         name="password_change"),
+    path('signup/', v.signup_page, name='signup'),
+    path('user/password_change/',
+         auth_views.PasswordChangeView.as_view(
+             template_name='user/password_change.html'),
+         name="password_change"
+         ),
     path('user/password_change_done/',
-         auth_views.PasswordResetDoneView.as_view(template_name='user/password_change_done.html'),
+         auth_views.PasswordResetDoneView.as_view(
+             template_name='user/password_change_done.html'
+         ),
          name='password_change_done'),
-
-
-    path('ticket/create_ticket/', review.views.create_ticket, name='create_ticket'),
-    path('ticket/<int:pk>', review.views.ticket_detail, name='ticket_detail'),
-    path('ticket/delete/<int:pk>', review.views.DeleteTicketView.as_view(), name='delete_ticket'),
-    path('ticket/update/<int:pk>', review.views.update_ticket, name='update_ticket'),
-
-    path('review/new/', review.views.review_with_ticket, name='create_review'),
-    path('review/<int:pk>', review.views.review_detail, name='review_snippet'),
-    path('review/update/<int:pk>', review.views.update_review, name='update_review'),
-    path('review/response/<int:pk>', review.views.review_response, name='review_response'),
-    path('review/<int:pk>/delete', review.views.DeleteReviewView.as_view(), name='delete_review'),
-
-    path('feed/', review.views.feed, name='feed'),
+    path('ticket/create_ticket/',
+         review.views.create_ticket, name='create_ticket'),
+    path('ticket/<int:pk>',
+         review.views.ticket_detail, name='ticket_snippet'),
+    path('ticket/delete/<int:pk>',
+         review.views.DeleteTicketView.as_view(), name='delete_ticket'),
+    path('ticket/update/<int:pk>',
+         review.views.update_ticket, name='update_ticket'),
+    path('review/new/',
+         review.views.review_with_ticket, name='create_review'),
+    path('review/<int:pk>',
+         review.views.review_detail, name='review_snippet'),
+    path('review/update/<int:pk>',
+         review.views.update_review, name='update_review'),
+    path('review/response/<int:pk>',
+         review.views.review_response, name='review_response'),
+    path('review/<int:pk>/delete',
+         review.views.DeleteReviewView.as_view(), name='delete_review'),
     path('follow_users/', review.views.follow_users, name='follow_users'),
+    path('follow_users/unfollow/<int:pk>',
+         review.views.Unfollow.as_view(), name='unfollow'),
     path('profile/', review.views.profile_view, name='profile'),
 
 ]

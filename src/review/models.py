@@ -5,11 +5,12 @@ from django.db import models
 
 
 class Ticket(models.Model):
-    # Your Ticket model definition goes here
     objects = models.Manager()
     title = models.CharField(max_length=128)
     description = models.TextField(max_length=2048, blank=True)
-    user = models.ForeignKey(to=settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    user = models.ForeignKey(
+        to=settings.AUTH_USER_MODEL, on_delete=models.CASCADE
+    )
     image = models.ImageField(upload_to='images/')
     time_created = models.DateTimeField(auto_now_add=True)
 
@@ -17,8 +18,6 @@ class Ticket(models.Model):
 
     def __str__(self):
         return f" {self.title} - {self.user}"
-
-
 
 
 class Review(models.Model):
@@ -30,15 +29,23 @@ class Review(models.Model):
     )
     headline = models.CharField(max_length=128)
     body = models.CharField(max_length=8192, blank=True)
-    user = models.ForeignKey(to=settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    user = models.ForeignKey(
+        to=settings.AUTH_USER_MODEL, on_delete=models.CASCADE
+    )
     time_created = models.DateTimeField(auto_now_add=True)
 
 
 class UserFollows(models.Model):
     # Your UserFollows model definition goes here
     objects = models.Manager()
-    user = models.ForeignKey(to=settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='following')
-    followed_user = models.ForeignKey(to=settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='followed_by')
+    user = models.ForeignKey(
+        to=settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE, related_name='following'
+    )
+    followed_user = models.ForeignKey(
+        to=settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE, related_name='followed_by'
+    )
 
     class Meta:
         # ensures we don't get multiple UserFollows instances
@@ -47,25 +54,3 @@ class UserFollows(models.Model):
             "user",
             "followed_user",
         )
-
-
-"""
-class User(AbstractUser):
-    CREATOR = "CREATOR"
-    SUBSCRIBER = "SUBSCRIBER"
-
-    ROLE_CHOICES = (
-        (CREATOR, "Créateur"),
-        (SUBSCRIBER, "Abonné"),
-    )
-    profile_photo = models.ImageField(verbose_name="photo de profil")
-    role = models.CharField(max_length=30, choices=ROLE_CHOICES, verbose_name="rôle")
-
-    follows = models.ManyToManyField(
-        "self",
-        limit_choices_to={"role": CREATOR},
-        symmetrical=False,
-        verbose_name="suit",
-    )
-
-"""

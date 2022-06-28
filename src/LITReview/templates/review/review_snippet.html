@@ -1,29 +1,55 @@
 {% block content %}
-<div class="card mx-auto" style="width: 36rem;">
-    {% if post.ticket.image %}
-    <div class="col-md-8 px-0 mx-auto">
-        <img src="{{ post.ticket.image.url }}"
-             alt="{{ post.ticket.title }}" class="img-fluid">
-    </div>
-    {% endif %}
 
-    <div class="card-body">
+<div class="card mx-auto row justify-content-center align-items-center input-group mb-3" style="width: 36rem;">
+
+
+    <div class="card-body center-block text-center mb-3">
         <h5 class="card-title"> {{ post.headline }}</h5>
-         <h6 class="mb-0"><span class="badge badge-success">Review</span></h6>
-    <h2 class="mt-0">
-        <a class="text-dark" href="{% url 'review_snippet' post.id %}">{{ post.headline }}</a> -
-        <p class="star-rating-{{ post.rating }}" id="stars">
-            <i class="bi bi-star-fill"></i>
-            <i class="bi bi-star-fill"></i>
-            <i class="bi bi-star-fill"></i>
-            <i class="bi bi-star-fill"></i>
-            <i class="bi bi-star-fill"></i>
-        </p>
-    </h2>
+        <h6 class="mb-0"><span class="badge badge-success">Review</span></h6>
+        <div class="p-8 w-full bg-red-50 rounded-lg sahdow-lg overflow-hidden flex flex-col md:flex-col px-20">
+            <p class="text-xl">
+                {% if post.rating == 1 %}
+                &#9733; &#9734; &#9734; &#9734; &#9734;
+                {% elif post.rating == 2 %}
+                &#9733; &#9733; &#9734; &#9734; &#9734;
+                {% elif post.rating == 3 %}
+                &#9733; &#9733; &#9733; &#9734; &#9734;
+                {% elif post.rating == 4 %}
+                &#9733; &#9733; &#9733; &#9733; &#9734;
+                {% elif post.rating == 5 %}
+                &#9733; &#9733; &#9733; &#9733; &#9733;
+                {% endif %}
+            </p>
+            <h6 class="text-base text-gray-400 font-normal mb-5">
+                {% if post.user != request.user %}
+                Une critique de "{{ post.ticket.title }}" par {{ post.user.username }} du {{ post.time_created }}
+                {% else %}
+                Vous avez publié la critique de "{{ post.ticket.title }}" le {{ post.time_created }}
+                {% endif %}
+            </h6>
+        </div>
+
+        <h6 class="mt-0">
+            <a class="text-dark">{{ post.body }}</a> -
+
+        </h6>
+        {% if post.ticket.image %}
+        <div class="col-md-8 px-0 mx-auto">
+            <img src="{{ post.ticket.image.url }}"
+                 alt="{{ post.ticket.title }}" class="img-fluid">
+        </div>
+        {% endif %}
         <p class="card-text">{{ post.time_created|date:"H:i, F d, Y" }}</p>
+          {% if dont_show_detail is None or dont_show_detail == False %}
+        <a href="{% url 'review_snippet' post.pk %}" class="btn btn-primary">Détail</a>
+        {% endif %}
+        {% if post.user == request.user and dont_show_detail == True %}
+        <a href="{% url 'update_review' post.pk %}" class="btn btn-primary">Modifier </a>
+        <a href="{% url 'delete_review' post.pk %}" class="btn btn-primary">Supprimer </a>
+        {% endif %}
+
     </div>
 </div>
-
 
 
 {% endblock %}

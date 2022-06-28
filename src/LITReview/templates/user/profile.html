@@ -1,24 +1,32 @@
 {% extends 'base.html' %}
 
 {% block content %}
+<h1 class="flex justify-content-center align-items-center input-group mb-3"> LIT REVIEW</h1>
 
-{% if post.user == request.user %}
+{% for ticket in tickets %}
+{% if ticket.user == request.user %}
+    <div >
 
-<div>
-    <ul>
-        {% for p in post %}
-        <li><a href="{% url 'ticket_snippet' ticket.id %}">{{ p.title }}</a></li>
-        {% endfor %}
-    </ul>
-
+    <div >
+<div class="flex justify-content-center align-items-center input-group mb-3">
+        {% include 'review/ticket_snippet.html' with post=ticket %}
+    </div>
 </div>
-
+    </div>
 {% endif %}
-
-{% for follow_user in follow_users %}
-{{follow_user}}
 {% endfor %}
+{% for review in reviews %}
 
+{% if review.user == request.user %}
+            <>
+
+<div class="flex justify-content-center align-items-center input-group mb-3">
+    <div >
+        {% include 'review/review_snippet.html' with post=review %}
+    </div>
+</div>
+{% endif %}
+{% endfor %}
 
 
 {% endblock content %}

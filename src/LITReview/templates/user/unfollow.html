@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="card mx-auto row justify-content-center align-items-center input-group mb-3" style="width: 36rem;">
+<div class="content-section">
+  <form method="POST">
+    {% csrf_token %}
+
+    <fieldset class="form-group">
+      <legend class="border-bottom mb-4">Désabonner</legend>
+      <h3>Etes vous sûr de vouloir ne plus suivre {{ unfollow.followed_user }}?</h3>
+    </fieldset>
+    <div class="form-group">
+      <button class="btn btn-outline-danger" type="submit">Oui, se désabonner</button>
+      <a class="btn btn-outline-secondary" href="{% url 'follow_users' %}">Annuler </a>
+    </div>
+
+  </form>
+</div>
+</div>
+{% endblock content %}
