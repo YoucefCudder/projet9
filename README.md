@@ -23,7 +23,7 @@ env\Scripts\activate
 
 - Récupérer les dépendances nécessaires
 ````shell
-pip install -r requirements.txt
+pip install -r src/requirements.txt
 ````
 # Lancer le projet 
 
