@@ -32,6 +32,7 @@ pip install -r requirements.txt
 python manage.py runserver
 ````
 - Se rendre à l'adresse [127.0.0.1:8000](http://127.0.0.1:8000)
+- Créer un compte ou se connecter
 
 
 ### Informations 
