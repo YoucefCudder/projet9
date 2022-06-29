@@ -25,10 +25,21 @@ env\Scripts\activate
 ````shell
 pip install -r requirements.txt
 ````
-
 # Lancer le projet 
 
+- Activer le serveur Django
 ````shell
 python manage.py runserver
 ````
+- Se rendre à l'adresse [127.0.0.1:8000](127.0.0.1:8000)
 
+
+### Informations 
+
+**Possibilité de :** 
+- Se connecter et s'inscrire
+- Créer des tickets de demande de critique 
+- Créer des critiques, en réponse ou non à des tickets 
+- Consulter un flux contenant les tickets et critiques des utilisateurs auxquels on est abonné 
+- Suivre d'autres utilisateurs, ou se désabonner.
+- Voir ses propres posts, les modifier ou les supprimer 
