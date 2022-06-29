@@ -31,7 +31,7 @@ pip install -r requirements.txt
 ````shell
 python manage.py runserver
 ````
-- Se rendre à l'adresse [127.0.0.1:8000](127.0.0.1:8000)
+- Se rendre à l'adresse [127.0.0.1:8000](http://127.0.0.1:8000)
 
 
 ### Informations 
