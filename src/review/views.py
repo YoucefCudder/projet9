@@ -63,7 +63,6 @@ def get_users_viewable_tickets(user):
 
 @login_required
 def create_ticket(request):
-    """ DOCSTRING /!/ """
     form = NewTicketForm
     if request.method == 'POST':
         ticket_form = NewTicketForm(request.POST, request.FILES)
