@@ -1,37 +1,46 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<div class="card mx-auto row justify-content-center align-items-center input-group mb-3" style="width: 36rem;">
-<h1>Créer une critique</h1>
-    <form enctype='multipart/form-data' method="POST">
-        {% csrf_token %}
+<div class="card mx-auto row justify-content-center align-items-center input-group mb-3"
+     style="width: 36rem;">
+    <div class="card-body center-block text-center mb-3">
 
-        {% if request.get_full_path == "/review/new/" %}
-        <h3>Livre / Article</h3>
-        {{form}}
-        {{ ticket_form.as_p }}
-        {{ review_form.as_p }}
-        <input type="submit" value="Envoyer">
+        <h1>Créer une critique</h1>
+        <form enctype='multipart/form-data' method="POST">
+            {% csrf_token %}
 
-        {% else %}
-        <h4> En réponse à {{ post.user }} :</h4>
-        {{ form.as_p }}
+            {% if request.get_full_path == "/review/new/" %}
+            <h3>Livre / Article</h3>
+            {{form}}
+            {{ ticket_form.as_p }}
+            {{ review_form.as_p }}
+            <input type="submit" value="Envoyer">
 
-        <input type="submit" value="Envoyer">
-        {% csrf_token %}
+            {% else %}
+            <h4> En réponse à {{ post.user }} :</h4>
+            {{ form.as_p }}
 
-        <article>
-            <div>
-                <h3>{{ post.title }}</h3>
+            <input type="submit" value="Envoyer">
+            {% csrf_token %}
+
+            <article>
                 <div>
-                    {% if post.image %}
-                    <img alt="{{ post.title }}" src="{{ post.image.url }}">
-                    {% endif %}
-                    <p>{{ post.description }}</p>
+                    <h3>{{ post.title }}</h3>
+                    <div>
+                        {% if post.image %}
+                        <div class="col-md-8 px-0 mx-auto "
+                             style="width: 36rem;">
+
+                            <img class=" figure-img img-fluid" alt="{{ post.title }}"
+                                 src="{{ post.image.url }}">
+                        </div>
+                        {% endif %}
+                        <p>{{ post.description }}</p>
+                    </div>
                 </div>
-            </div>
-        </article>
-        {% endif %}
-    </form>
+            </article>
+            {% endif %}
+        </form>
+    </div>
 </div>
 {% endblock %}
