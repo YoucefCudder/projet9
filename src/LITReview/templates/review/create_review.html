@@ -2,7 +2,7 @@
 {% block content %}
 
 <div class="card mx-auto row justify-content-center align-items-center input-group mb-3" style="width: 36rem;">
-<h1>Créer une review</h1>
+<h1>Créer une critique</h1>
     <form enctype='multipart/form-data' method="POST">
         {% csrf_token %}
 
@@ -14,7 +14,7 @@
         <input type="submit" value="Envoyer">
 
         {% else %}
-        <h4> Replying to {{ post.user }} :</h4>
+        <h4> En réponse à {{ post.user }} :</h4>
         {{ form.as_p }}
 
         <input type="submit" value="Envoyer">

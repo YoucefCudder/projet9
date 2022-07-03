@@ -28,12 +28,10 @@
     {% if post.content_type == 'REVIEW' %}
     <fieldset>
         {% include 'review/review_snippet.html' with review=post %}
-
     </fieldset>
     {% elif post.content_type == 'TICKET' %}
     <fieldset>
         {% include 'review/ticket_snippet.html' with ticket=post %}
-
     </fieldset>
     {% endif %}
     {% endfor %}
